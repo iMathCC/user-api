@@ -1,73 +1,33 @@
-# User API - Spring Boot + PostgreSQL
+# AstroVoluntário
 
-## 📖 Descrição
+Plataforma de conexão entre voluntários e causas/ONGs locais.
 
-API REST simples para criação e listagem de usuários, com persistência de dados em banco PostgreSQL.
+Projeto desenvolvido com o objetivo de praticar **Spring Boot**, **segurança** e arquitetura limpa.
 
-Projeto desenvolvido com foco em aprendizado de backend, integração com banco de dados e estruturação de uma aplicação utilizando Spring Boot.
-
----
-
-## ⚙️ Tecnologias
+## Tecnologias
 
 - Java 17
-- Spring Boot
-- Spring Data JPA (Hibernate)
-- PostgreSQL
+- Spring Boot 3.3.13
+- Spring Data JPA + Hibernate
+- PostgreSQL + Flyway
+- Lombok + MapStruct
+- Springdoc OpenAPI (Swagger)
+- DTOs, Service Layer, Exception Handler
 
----
+## Funcionalidades atuais (Fase 0)
 
-## 🚀 Funcionalidades
+- Cadastro de usuários com validação
+- Listagem de usuários
+- Camadas bem separadas (Controller → Service → Repository)
+- Tratamento global de exceções
+- Documentação automática da API
 
-- Criar usuário (nome e email)
-- Listar todos os usuários
-- Persistência em banco de dados
+## Como rodar
 
----
+1. Clone o repositório
+2. Configure o banco PostgreSQL (usuário `postgres` + senha)
+3. Atualize `src/main/resources/application.properties` com suas credenciais
+4. Rode:
 
-## ▶️ Como rodar o projeto
-
-### 1. Criar banco no PostgreSQL
-
-CREATE DATABASE astock;
-
-### 2. Criar a tabela
-
-Execute o arquivo: src/main/resources/schema.sql
-
-
-### 3. Configurar o banco
-
-No arquivo application.properties, coloque suas credenciais:
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/astock
-spring.datasource.username=SEU_USUARIO
-spring.datasource.password=SUA_SENHA
-
-### 4. Rodar a aplicação:
-
-./mvnw spring-boot:run
-
-ou
-
-mvn spring-boot:run
-
-### 🌐 Endpoints
-
-Criar usuário
-POST /users
-
-Exemplo:
-{
-  "nome": "Name",
-  "email": "names@email.com"
-}
-
-### Listar usuários
-GET /users
-
-
-### 🧠 Observações
-
-O ID é gerado automaticamente pelo banco
-O email é único (não pode repetir)
+```bash
+./mvnw clean spring-boot:run
