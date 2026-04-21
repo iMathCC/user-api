@@ -1,38 +1,52 @@
 # Maven / Build
 target/
-!**/src/main/**/target/
-!**/src/test/**/target/
+.mvn/wrapper/maven-wrapper.jar
 
 # Logs
 *.log
+*.log.*
 
-# Env
+# Environment / Sensitive files
 .env
+application-*.properties
+*.p12
+*.jks
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IDEs
+.idea/
 *.iml
+*.iws
 *.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
 .vscode/
+.settings/
+.classpath
+.project
+.factorypath
+.springBeans
+.sts4-cache/
+.nbproject/
+.nbbuild/
+.nbdist/
+.nbgradle/
+
+# Compiled files / Temporary
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Test coverage
+coverage/
+jacoco/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Flyway / Database
+db/migration/*__*.sql~
+
+# Outros comuns em Spring Boot
+/spring-boot-devtools.properties

@@ -1,0 +1,15 @@
+package com.astrovoluntario.repository;
+
+import com.astrovoluntario.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    //Busca por email
+    Optional<User> findByEmail(String email);
+
+    //Verifica se já existe um usuário com esse email
+    boolean existsByEmail(String email);
+}
