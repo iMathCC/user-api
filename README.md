@@ -4,43 +4,45 @@ Plataforma de conexão entre voluntários e causas/ONGs locais.
 
 ## Tecnologias
 
-- Java 17
-- Spring Boot 3.3.13
-- Spring Security 6
-- JWT (JSON Web Token)
-- Spring Data JPA + Hibernate
-- PostgreSQL + Flyway
-- BCrypt (senhas)
-- Lombok + MapStruct
-- Springdoc OpenAPI (Swagger)
-- DTOs, Service Layer, Exception Handler
+- Java 17 | Spring Boot 3.3 | Spring Security 6 | JWT | Spring Data JPA | PostgreSQL | Flyway | BCrypt | Lombok | MapStruct | Swagger
 
-## Funcionalidades (Fase 1)
+## Funcionalidades
 
-### Autenticação e Segurança
-- ✅ Cadastro de usuários com validação
-- ✅ Login com geração de token JWT
-- ✅ Senhas criptografadas com BCrypt
-- ✅ Rotas protegidas (requer token)
+### Fase 01 - Autenticação
+- ✅ Cadastro/Login com JWT
+- ✅ Senhas criptografadas (BCrypt)
 - ✅ Roles: ADMIN, VOLUNTARIO, ONG
-- ✅ Tratamento global de exceções
-- ✅ Documentação Swagger com autenticação JWT
+- ✅ Swagger com autenticação JWT
 
-### Arquitetura
-- ✅ Camadas bem separadas (Controller → Service → Repository)
-- ✅ DTOs para não expor entidades
-- ✅ Flyway para migrações de banco
-- ✅ Configuração segura via variáveis de ambiente
+### Fase 02 - Domínio Voluntário
+- ✅ Perfil de voluntário (habilidades, causas, localização)
+- ✅ Relacionamentos ManyToMany
+- ✅ 8 migrações Flyway
+- ✅ CRUD de voluntários
+
+## Endpoints
+
+| Método | Endpoint | Descrição | Permissão |
+|--------|----------|-----------|------------|
+| POST | `/auth/register` | Registrar usuário | Público |
+| POST | `/auth/login` | Login → token JWT | Público |
+| POST | `/voluntarios/me/perfil` | Criar perfil | VOLUNTARIO |
+| GET | `/voluntarios/me` | Meu perfil | VOLUNTARIO |
+| GET | `/voluntarios` | Listar todos | ADMIN/ONG |
 
 ## Como rodar
 
-### Pré-requisitos
-- Java 17
-- PostgreSQL (ou use H2 para testes)
-
-### Passo a passo
-
-1. **Clone o repositório**
 ```bash
-git clone https://github.com/seu-usuario/astro-voluntario.git
-cd astro-voluntario
+# 1. Clone
+git clone https://github.com/iMathCC/user-api.git
+cd user-api
+
+# 2. Configure .env
+DB_URL=jdbc:postgresql://localhost:5432/astrovoluntario
+DB_USERNAME=postgres
+DB_PASSWORD=sua_senha
+JWT_SECRET_KEY=sua_chave_secreta
+
+# 3. Execute
+./mvnw spring-boot:run
+Acesse: http://localhost:8080/swagger-ui.html
